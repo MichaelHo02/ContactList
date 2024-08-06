@@ -15,6 +15,11 @@
 		C17DFF112C5DF578005A711E /* ContactListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DFF102C5DF578005A711E /* ContactListTests.swift */; };
 		C17DFF1B2C5DF578005A711E /* ContactListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DFF1A2C5DF578005A711E /* ContactListUITests.swift */; };
 		C17DFF1D2C5DF578005A711E /* ContactListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DFF1C2C5DF578005A711E /* ContactListUITestsLaunchTests.swift */; };
+		C17DFF2D2C5DF9EF005A711E /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DFF2C2C5DF9EF005A711E /* ItemRow.swift */; };
+		C17DFF2F2C5E22B2005A711E /* ContactCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DFF2E2C5E22B2005A711E /* ContactCreationView.swift */; };
+		C17DFF322C5E428A005A711E /* EmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C17DFF312C5E428A005A711E /* EmojiPicker */; };
+		C17DFF352C5E5804005A711E /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = C17DFF342C5E5804005A711E /* iPhoneNumberField */; };
+		C17DFF382C5E87A1005A711E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = C17DFF372C5E87A1005A711E /* SFSafeSymbols */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +51,8 @@
 		C17DFF162C5DF578005A711E /* ContactListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17DFF1A2C5DF578005A711E /* ContactListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListUITests.swift; sourceTree = "<group>"; };
 		C17DFF1C2C5DF578005A711E /* ContactListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C17DFF2C2C5DF9EF005A711E /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
+		C17DFF2E2C5E22B2005A711E /* ContactCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCreationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17DFF382C5E87A1005A711E /* SFSafeSymbols in Frameworks */,
+				C17DFF322C5E428A005A711E /* EmojiPicker in Frameworks */,
+				C17DFF352C5E5804005A711E /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,9 +106,11 @@
 		C17DFEFC2C5DF576005A711E /* ContactList */ = {
 			isa = PBXGroup;
 			children = (
+				C17DFF2B2C5DF9D3005A711E /* UI */,
+				C17DFF2A2C5DF5F5005A711E /* View */,
+				C17DFF292C5DF5ED005A711E /* Model */,
 				C17DFEFD2C5DF576005A711E /* ContactListApp.swift */,
 				C17DFEFF2C5DF576005A711E /* ContentView.swift */,
-				C17DFF012C5DF576005A711E /* Item.swift */,
 				C17DFF032C5DF578005A711E /* Assets.xcassets */,
 				C17DFF052C5DF578005A711E /* Preview Content */,
 			);
@@ -130,6 +142,30 @@
 			path = ContactListUITests;
 			sourceTree = "<group>";
 		};
+		C17DFF292C5DF5ED005A711E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C17DFF012C5DF576005A711E /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C17DFF2A2C5DF5F5005A711E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C17DFF2E2C5E22B2005A711E /* ContactCreationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C17DFF2B2C5DF9D3005A711E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C17DFF2C2C5DF9EF005A711E /* ItemRow.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +182,11 @@
 			dependencies = (
 			);
 			name = ContactList;
+			packageProductDependencies = (
+				C17DFF312C5E428A005A711E /* EmojiPicker */,
+				C17DFF342C5E5804005A711E /* iPhoneNumberField */,
+				C17DFF372C5E87A1005A711E /* SFSafeSymbols */,
+			);
 			productName = ContactList;
 			productReference = C17DFEFA2C5DF576005A711E /* ContactList.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +259,11 @@
 				Base,
 			);
 			mainGroup = C17DFEF12C5DF576005A711E;
+			packageReferences = (
+				C17DFF302C5E428A005A711E /* XCRemoteSwiftPackageReference "EmojiPicker" */,
+				C17DFF332C5E57DD005A711E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				C17DFF362C5E87A1005A711E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+			);
 			productRefGroup = C17DFEFB2C5DF576005A711E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -263,6 +309,8 @@
 				C17DFF002C5DF576005A711E /* ContentView.swift in Sources */,
 				C17DFF022C5DF576005A711E /* Item.swift in Sources */,
 				C17DFEFE2C5DF576005A711E /* ContactListApp.swift in Sources */,
+				C17DFF2F2C5E22B2005A711E /* ContactCreationView.swift in Sources */,
+				C17DFF2D2C5DF9EF005A711E /* ItemRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +474,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactList/Preview Content\"";
+				DEVELOPMENT_TEAM = FA6LKG4QY6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -454,6 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactList/Preview Content\"";
+				DEVELOPMENT_TEAM = FA6LKG4QY6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -586,6 +636,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C17DFF302C5E428A005A711E /* XCRemoteSwiftPackageReference "EmojiPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kelvas09/EmojiPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+		C17DFF332C5E57DD005A711E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.4;
+			};
+		};
+		C17DFF362C5E87A1005A711E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C17DFF312C5E428A005A711E /* EmojiPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C17DFF302C5E428A005A711E /* XCRemoteSwiftPackageReference "EmojiPicker" */;
+			productName = EmojiPicker;
+		};
+		C17DFF342C5E5804005A711E /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C17DFF332C5E57DD005A711E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
+		C17DFF372C5E87A1005A711E /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C17DFF362C5E87A1005A711E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C17DFEF22C5DF576005A711E /* Project object */;
 }

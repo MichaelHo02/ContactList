@@ -1,0 +1,51 @@
+{
+  "originHash" : "701e8f82f23e991b0da15fc04986b5b87675088b8646ba17b7a638ff802ab74e",
+  "pins" : [
+    {
+      "identity" : "emojipicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kelvas09/EmojiPicker.git",
+      "state" : {
+        "revision" : "d787591e2121b617209172ad6a8ebf2975f605ae",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "iphonenumberfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MojtabaHs/iPhoneNumberField.git",
+      "state" : {
+        "revision" : "cd961621559393c5220c6c955690ecc52318e753",
+        "version" : "0.10.4"
+      }
+    },
+    {
+      "identity" : "phonenumberkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/PhoneNumberKit",
+      "state" : {
+        "revision" : "0a025521711539e3a6e0e725ac868ac84a4983e1",
+        "version" : "3.7.11"
+      }
+    },
+    {
+      "identity" : "sfsafesymbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SFSafeSymbols/SFSafeSymbols.git",
+      "state" : {
+        "revision" : "e2e28f4e56e1769c2ec3c61c9355fc64eb7a535a",
+        "version" : "5.3.0"
+      }
+    },
+    {
+      "identity" : "smile",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onmyway133/Smile",
+      "state" : {
+        "revision" : "40604722a7a56f735124e069fcbb58307637744b",
+        "version" : "2.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}

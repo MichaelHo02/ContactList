@@ -9,21 +9,25 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
+    @State private var path = NavigationPath()
+    @State private var presentedView: PresentedView?
+
     var body: some View {
-        NavigationSplitView {
+        NavigationStack(path: $path) {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    NavigationLink(value: PushedView.detailPage) {
+                        ItemRow(item: item)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+            .listRowSpacing(8)
+            .navigationTitle("Contact List") 
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -34,16 +38,23 @@ struct ContentView: View {
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            .navigationDestination(for: PushedView.self) { pushedView in
+                switch pushedView {
+                case .detailPage:
+                    Text("test")
+                }
+            }
+            .sheet(item: $presentedView) { presentedView in
+                switch presentedView {
+                case .createContact:
+                    ContactCreationView()
+                }
+            }
         }
     }
 
     private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
+        presentedView = .createContact
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -53,6 +64,20 @@ struct ContentView: View {
             }
         }
     }
+}
+
+extension ContentView {
+
+    enum PushedView: Hashable {
+        case detailPage
+    }
+
+    enum PresentedView: Int, Identifiable {
+        var id: Int { self.rawValue }
+
+        case createContact
+    }
+
 }
 
 #Preview {
