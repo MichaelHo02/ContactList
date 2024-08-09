@@ -20,6 +20,17 @@
 		C17DFF322C5E428A005A711E /* EmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C17DFF312C5E428A005A711E /* EmojiPicker */; };
 		C17DFF352C5E5804005A711E /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = C17DFF342C5E5804005A711E /* iPhoneNumberField */; };
 		C17DFF382C5E87A1005A711E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = C17DFF372C5E87A1005A711E /* SFSafeSymbols */; };
+		C1D111C82C626CC100C5E066 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111C72C626CC100C5E066 /* ContactDetailView.swift */; };
+		C1D111CA2C6291CC00C5E066 /* ContactNameCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111C92C6291CC00C5E066 /* ContactNameCreation.swift */; };
+		C1D111CC2C62926000C5E066 /* ContactAvatarCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111CB2C62926000C5E066 /* ContactAvatarCreation.swift */; };
+		C1D111CE2C62936F00C5E066 /* ContactPhoneNumberCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111CD2C62936F00C5E066 /* ContactPhoneNumberCreation.swift */; };
+		C1D111D02C6293C100C5E066 /* ContactReviewCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111CF2C6293C100C5E066 /* ContactReviewCreation.swift */; };
+		C1D111D22C6294CA00C5E066 /* View+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111D12C6294CA00C5E066 /* View+Styles.swift */; };
+		C1D111D42C629B7D00C5E066 /* ReviewItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111D32C629B7D00C5E066 /* ReviewItemRow.swift */; };
+		C1D111D62C66064F00C5E066 /* ContactEmailCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111D52C66064F00C5E066 /* ContactEmailCreationView.swift */; };
+		C1D111D82C66326200C5E066 /* ContactLinkedInCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111D72C66326200C5E066 /* ContactLinkedInCreation.swift */; };
+		C1D111DB2C66394D00C5E066 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = C1D111DA2C66394D00C5E066 /* CodeScanner */; };
+		C1D111DD2C663C3F00C5E066 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111DC2C663C3F00C5E066 /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +64,16 @@
 		C17DFF1C2C5DF578005A711E /* ContactListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C17DFF2C2C5DF9EF005A711E /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		C17DFF2E2C5E22B2005A711E /* ContactCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCreationView.swift; sourceTree = "<group>"; };
+		C1D111C72C626CC100C5E066 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
+		C1D111C92C6291CC00C5E066 /* ContactNameCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactNameCreation.swift; sourceTree = "<group>"; };
+		C1D111CB2C62926000C5E066 /* ContactAvatarCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAvatarCreation.swift; sourceTree = "<group>"; };
+		C1D111CD2C62936F00C5E066 /* ContactPhoneNumberCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPhoneNumberCreation.swift; sourceTree = "<group>"; };
+		C1D111CF2C6293C100C5E066 /* ContactReviewCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactReviewCreation.swift; sourceTree = "<group>"; };
+		C1D111D12C6294CA00C5E066 /* View+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Styles.swift"; sourceTree = "<group>"; };
+		C1D111D32C629B7D00C5E066 /* ReviewItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemRow.swift; sourceTree = "<group>"; };
+		C1D111D52C66064F00C5E066 /* ContactEmailCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEmailCreationView.swift; sourceTree = "<group>"; };
+		C1D111D72C66326200C5E066 /* ContactLinkedInCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLinkedInCreation.swift; sourceTree = "<group>"; };
+		C1D111DC2C663C3F00C5E066 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1D111DB2C66394D00C5E066 /* CodeScanner in Frameworks */,
 				C17DFF382C5E87A1005A711E /* SFSafeSymbols in Frameworks */,
 				C17DFF322C5E428A005A711E /* EmojiPicker in Frameworks */,
 				C17DFF352C5E5804005A711E /* iPhoneNumberField in Frameworks */,
@@ -154,6 +176,14 @@
 			isa = PBXGroup;
 			children = (
 				C17DFF2E2C5E22B2005A711E /* ContactCreationView.swift */,
+				C1D111C72C626CC100C5E066 /* ContactDetailView.swift */,
+				C1D111C92C6291CC00C5E066 /* ContactNameCreation.swift */,
+				C1D111CB2C62926000C5E066 /* ContactAvatarCreation.swift */,
+				C1D111CD2C62936F00C5E066 /* ContactPhoneNumberCreation.swift */,
+				C1D111CF2C6293C100C5E066 /* ContactReviewCreation.swift */,
+				C1D111D52C66064F00C5E066 /* ContactEmailCreationView.swift */,
+				C1D111D72C66326200C5E066 /* ContactLinkedInCreation.swift */,
+				C1D111DC2C663C3F00C5E066 /* ScannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				C17DFF2C2C5DF9EF005A711E /* ItemRow.swift */,
+				C1D111D12C6294CA00C5E066 /* View+Styles.swift */,
+				C1D111D32C629B7D00C5E066 /* ReviewItemRow.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -186,6 +218,7 @@
 				C17DFF312C5E428A005A711E /* EmojiPicker */,
 				C17DFF342C5E5804005A711E /* iPhoneNumberField */,
 				C17DFF372C5E87A1005A711E /* SFSafeSymbols */,
+				C1D111DA2C66394D00C5E066 /* CodeScanner */,
 			);
 			productName = ContactList;
 			productReference = C17DFEFA2C5DF576005A711E /* ContactList.app */;
@@ -263,6 +296,7 @@
 				C17DFF302C5E428A005A711E /* XCRemoteSwiftPackageReference "EmojiPicker" */,
 				C17DFF332C5E57DD005A711E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				C17DFF362C5E87A1005A711E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				C1D111D92C66394D00C5E066 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = C17DFEFB2C5DF576005A711E /* Products */;
 			projectDirPath = "";
@@ -306,11 +340,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1D111CE2C62936F00C5E066 /* ContactPhoneNumberCreation.swift in Sources */,
+				C1D111D82C66326200C5E066 /* ContactLinkedInCreation.swift in Sources */,
+				C1D111C82C626CC100C5E066 /* ContactDetailView.swift in Sources */,
 				C17DFF002C5DF576005A711E /* ContentView.swift in Sources */,
 				C17DFF022C5DF576005A711E /* Item.swift in Sources */,
 				C17DFEFE2C5DF576005A711E /* ContactListApp.swift in Sources */,
+				C1D111CA2C6291CC00C5E066 /* ContactNameCreation.swift in Sources */,
 				C17DFF2F2C5E22B2005A711E /* ContactCreationView.swift in Sources */,
+				C1D111D42C629B7D00C5E066 /* ReviewItemRow.swift in Sources */,
+				C1D111DD2C663C3F00C5E066 /* ScannerView.swift in Sources */,
+				C1D111D02C6293C100C5E066 /* ContactReviewCreation.swift in Sources */,
+				C1D111D22C6294CA00C5E066 /* View+Styles.swift in Sources */,
+				C1D111CC2C62926000C5E066 /* ContactAvatarCreation.swift in Sources */,
 				C17DFF2D2C5DF9EF005A711E /* ItemRow.swift in Sources */,
+				C1D111D62C66064F00C5E066 /* ContactEmailCreationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +521,7 @@
 				DEVELOPMENT_TEAM = FA6LKG4QY6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Scaning LinkedIn QR code";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -506,6 +551,7 @@
 				DEVELOPMENT_TEAM = FA6LKG4QY6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Scaning LinkedIn QR code";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -662,6 +708,14 @@
 				minimumVersion = 5.3.0;
 			};
 		};
+		C1D111D92C66394D00C5E066 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -679,6 +733,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C17DFF362C5E87A1005A711E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		C1D111DA2C66394D00C5E066 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1D111D92C66394D00C5E066 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

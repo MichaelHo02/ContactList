@@ -39,6 +39,13 @@ struct ItemRow: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    ItemRow(item: .init(timestamp: .now, username: "Michael Ho", avatar: .init(icon: "😂", background: .fromColor(.red)), phoneNumber: "098 765 432 10"))
-        .padding()
+    ItemRow(item: .init(
+        timestamp: .now,
+        username: "Michael Ho",
+        avatar: .init(icon: "😂", background: .fromColor(.red)),
+        phoneNumber: "098 765 432 10",
+        email: "thach.holeminh@gmail.com",
+        linkedInName: "thach-ho"
+    ))
+    .padding()
 }

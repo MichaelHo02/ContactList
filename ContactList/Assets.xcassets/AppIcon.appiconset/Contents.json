@@ -1,6 +1,13 @@
 {
   "images" : [
     {
+      "filename" : "contact-list-icon 1.jpg",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "filename" : "contact-list-icon.jpg",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

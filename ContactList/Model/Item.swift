@@ -15,19 +15,25 @@ final class Item {
     public var username: String
     public var avatar: Avatar?
     public var phoneNumber: String
+    public var email: String
+    public var linkedInName: String
 
     init(timestamp: Date) {
         self.timestamp = timestamp
         self.username = ""
         self.avatar = nil
         self.phoneNumber = ""
+        self.email = ""
+        self.linkedInName = ""
     }
 
-    init(timestamp: Date, username: String, avatar: Avatar?, phoneNumber: String) {
+    init(timestamp: Date, username: String, avatar: Avatar?, phoneNumber: String, email: String, linkedInName: String) {
         self.timestamp = timestamp
         self.username = username
         self.avatar = avatar
         self.phoneNumber = phoneNumber
+        self.email = email
+        self.linkedInName = linkedInName
     }
 
     public struct Avatar: Codable {
@@ -38,6 +44,7 @@ final class Item {
 }
 
 struct ColorComponents: Codable {
+
     let red: Float
     let green: Float
     let blue: Float
@@ -54,4 +61,5 @@ struct ColorComponents: Codable {
             blue: resolved.blue
         )
     }
+
 }

@@ -20,7 +20,7 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             List {
                 ForEach(items) { item in
-                    NavigationLink(value: PushedView.detailPage) {
+                    NavigationLink(value: PushedView.detailPage(item: item)) {
                         ItemRow(item: item)
                     }
                 }
@@ -40,8 +40,8 @@ struct ContentView: View {
             }
             .navigationDestination(for: PushedView.self) { pushedView in
                 switch pushedView {
-                case .detailPage:
-                    Text("test")
+                case .detailPage(let item):
+                    ContactDetailView(item: item)
                 }
             }
             .sheet(item: $presentedView) { presentedView in
@@ -69,7 +69,7 @@ struct ContentView: View {
 extension ContentView {
 
     enum PushedView: Hashable {
-        case detailPage
+        case detailPage(item: Item)
     }
 
     enum PresentedView: Int, Identifiable {
