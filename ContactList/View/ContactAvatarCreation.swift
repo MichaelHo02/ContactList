@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 import EmojiPicker
 
 struct ContactAvatarCreation: View {
@@ -26,13 +27,13 @@ struct ContactAvatarCreation: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            Text("Choose an Emoji")
+            Text(description)
                 .font(.title.bold())
 
             Button {
                 displayEmojiPicker = true
             } label: {
-                Text(selectedEmoji?.value ?? "?")
+                Text(avatarLabel)
                     .avatarStyle(background: selectedColor)
             }
             .sensoryFeedback(.impact(flexibility: .soft), trigger: selectedEmoji)
@@ -49,7 +50,7 @@ struct ContactAvatarCreation: View {
                             .foregroundStyle(color.secondary)
                             .overlay {
                                 if selectedColor == color {
-                                    Image(systemName: "checkmark")
+                                    Image(systemSymbol: .checkmark)
                                         .foregroundStyle(.foreground)
                                 }
                             }
@@ -61,11 +62,9 @@ struct ContactAvatarCreation: View {
         }
         .safeAreaInset(edge: .bottom) {
             Button {
-                guard let selectedEmoji else { return }
-                item.avatar = .init(icon: selectedEmoji.value, background: .fromColor(selectedColor))
-                action()
+                handleButtonPressed()
             } label: {
-                Text(isEdit ? "Save" : "Continue")
+                Text(buttonLabel)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -73,29 +72,68 @@ struct ContactAvatarCreation: View {
             .disabled(isDisable)
         }
         .padding()
-        .navigationTitle("Avatar")
+        .navigationTitle(navigationTitleParent)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $displayEmojiPicker) {
             NavigationView {
                 EmojiPickerView(selectedEmoji: $selectedEmoji)
-                    .navigationTitle("Emojis")
+                    .navigationTitle(navigationTitleChild)
                     .navigationBarTitleDisplayMode(.inline)
             }
             .presentationDetents([.medium, .large])
         }
         .onAppear {
-            if let avatar = item.avatar {
-                selectedEmoji = .init(value: avatar.icon, name: "")
-                selectedColor = avatar.background.color
-            }
+            handleOnAppear()
         }
     }
+
+    // MARK: - Logic
 
     private var isDisable: Bool {
         guard let avatar = item.avatar else { return false }
         return isEdit && selectedEmoji?.value ?? "" == avatar.icon && selectedColor == avatar.background.color || selectedEmoji == nil
     }
 
+    private func handleButtonPressed() {
+        guard let selectedEmoji else {
+            return
+        }
+        item.avatar = .init(icon: selectedEmoji.value, background: .fromColor(selectedColor))
+        action()
+    }
+
+    private func handleOnAppear() {
+        if let avatar = item.avatar {
+            selectedEmoji = .init(value: avatar.icon, name: "")
+            selectedColor = avatar.background.color
+        }
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ContactAvatarCreation {
+
+    var description: String {
+        "Choose an Emoji"
+    }
+
+    var avatarLabel: String {
+        selectedEmoji?.value ?? "?"
+    }
+
+    var buttonLabel: String {
+        isEdit ? "Save" : "Continue"
+    }
+
+    var navigationTitleParent: String {
+        "Avatar"
+    }
+
+    var navigationTitleChild: String {
+        "Emojis"
+    }
 
 }
 

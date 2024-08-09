@@ -21,10 +21,10 @@ struct ContactEmailCreationView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Pleaes provide the contact email.")
+            Text(description)
                 .font(.title3.weight(.light))
 
-            TextField("Type contact email", text: $email)
+            TextField(placeholder, text: $email)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
@@ -40,7 +40,7 @@ struct ContactEmailCreationView: View {
                 item.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
                 action()
             } label: {
-                Text(isEdit ? "Save" : "Continue")
+                Text(buttonLabel)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -48,7 +48,7 @@ struct ContactEmailCreationView: View {
             .disabled(isDisable)
         }
         .padding()
-        .navigationTitle("Contact Email")
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
             email = item.email
@@ -58,6 +58,38 @@ struct ContactEmailCreationView: View {
 
     private var isDisable: Bool {
         isEdit && item.email == email || email.isEmpty
+    }
+
+    private func handleOnAppear() {
+        email = item.email
+        focusedField = true
+    }
+
+    private func handleButtonPressed() {
+        item.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        action()
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ContactEmailCreationView {
+
+    var description: String {
+        "Pleaes provide the contact email."
+    }
+
+    var placeholder: String {
+        "Type contact email"
+    }
+
+    var buttonLabel: String {
+        isEdit ? "Save" : "Continue"
+    }
+
+    var navigationTitle: String {
+        "Contact Email"
     }
 
 }

@@ -22,10 +22,10 @@ struct ContactLinkedInCreation: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("You can always change this later.")
+            Text(description)
                 .font(.title3.weight(.light))
 
-            TextField("LinkededIn username", text: $name)
+            TextField(placeholder, text: $name)
                 .textFieldStyle(.plain)
                 .font(.title)
                 .focused($focusedField)
@@ -35,10 +35,9 @@ struct ContactLinkedInCreation: View {
         .safeAreaInset(edge: .bottom) {
             HStack {
                 Button {
-                    item.linkedInName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-                    action()
+                    handleButtonPressed()
                 } label: {
-                    Text(isEdit ? "Save" : "Continue")
+                    Text(buttonLabel)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
@@ -57,19 +56,52 @@ struct ContactLinkedInCreation: View {
             }
         }
         .padding()
-        .navigationTitle("LinkedIn")
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.large)
         .fullScreenCover(isPresented: $isShowingScanner) {
             ScanView(name: $name)
         }
         .onAppear {
-            name = item.linkedInName
-            focusedField = true
+            handleOnAppear()
         }
     }
 
+    // MARK: - Logic
+
     private var isDisable: Bool {
         isEdit && item.linkedInName == name || name.isEmpty
+    }
+
+    private func handleOnAppear() {
+        name = item.linkedInName
+        focusedField = true
+    }
+
+    private func handleButtonPressed() {
+        item.linkedInName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        action()
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ContactLinkedInCreation {
+
+    var description: String {
+        "You can always change this later."
+    }
+
+    var placeholder: String {
+        "LinkededIn username"
+    }
+
+    var buttonLabel: String {
+        isEdit ? "Save" : "Continue"
+    }
+
+    var navigationTitle: String {
+        "LinkedIn"
     }
 
 }

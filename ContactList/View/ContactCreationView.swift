@@ -36,61 +36,55 @@ struct ContactCreationView: View {
                     Button(role: .cancel) {
                         dismiss()
                     } label: {
-                        Text("Cancel")
-                    }
-
-                }
-            }
-            .navigationDestination(for: Self.PushedView.self) { pushedView in
-                switch pushedView {
-                case .username(let isPop):
-                    ContactNameCreation(isEdit: isPop) {
-                        if isPop {
-                            path.removeLast()
-                        } else {
-                            path.append(PushedView.avatar(isPop: false))
-                        }
-                    }
-                case .avatar(let isPop):
-                    ContactAvatarCreation(isEdit: isPop) {
-                        if isPop {
-                            path.removeLast()
-                        } else {
-                            path.append(PushedView.phoneNumber(isPop: false))
-                        }
-                    }
-                case .phoneNumber(let isPop):
-                    ContactPhoneNumberCreation(isEdit: isPop) {
-                        if isPop {
-                            path.removeLast()
-                        } else {
-                            path.append(PushedView.email(isPop: false))
-                        }
-                    }
-                case .email(let isPop):
-                    ContactEmailCreationView(isEdit: isPop) {
-                        if isPop {
-                            path.removeLast()
-                        } else {
-                            path.append(PushedView.linkedIn(isPop: false))
-                        }
-                    }
-                case .linkedIn(let isPop):
-                    ContactLinkedInCreation(isEdit: isPop) {
-                        if isPop {
-                            path.removeLast()
-                        } else {
-                            path.append(PushedView.review)
-                        }
-                    }
-                case .review:
-                    ContactReviewCreation {
-                        dismiss()
+                        Text(cancelLabel)
                     }
                 }
             }
+            .navigationDestination(for: Self.PushedView.self, destination: navigateDestination)
         }
         .environment(item)
+    }
+
+    // MARK: - Logic
+
+    @ViewBuilder
+    private func navigateDestination(pushedView: PushedView) -> some View {
+        switch pushedView {
+        case .username(let isPop):
+            ContactNameCreation(isEdit: isPop) {
+                isPop ? path.removeLast() : path.append(PushedView.avatar(isPop: false))
+            }
+        case .avatar(let isPop):
+            ContactAvatarCreation(isEdit: isPop) {
+                isPop ? path.removeLast() : path.append(PushedView.phoneNumber(isPop: false))
+            }
+        case .phoneNumber(let isPop):
+            ContactPhoneNumberCreation(isEdit: isPop) {
+                isPop ? path.removeLast() : path.append(PushedView.email(isPop: false))
+            }
+        case .email(let isPop):
+            ContactEmailCreationView(isEdit: isPop) {
+                isPop ? path.removeLast() : path.append(PushedView.linkedIn(isPop: false))
+            }
+        case .linkedIn(let isPop):
+            ContactLinkedInCreation(isEdit: isPop) {
+                isPop ? path.removeLast() : path.append(PushedView.review)
+            }
+        case .review:
+            ContactReviewCreation(isEdit: false) {
+                dismiss()
+            }
+        }
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ContactCreationView {
+
+    var cancelLabel: String {
+        "Cancel"
     }
 
 }
@@ -103,7 +97,6 @@ struct ContactCreationView: View {
     ContactNameCreation(isEdit: false) {}
         .environment(Item(timestamp: .now))
 }
-
 
 #Preview("Avatar") {
     ContactAvatarCreation(isEdit: false) {}
@@ -120,8 +113,13 @@ struct ContactCreationView: View {
         .environment(Item(timestamp: .now))
 }
 
+#Preview("LinkedIn") {
+    ContactLinkedInCreation(isEdit: false) {}
+        .environment(Item(timestamp: .now))
+}
+
 #Preview("Contact Review") {
-    ContactReviewCreation {}
+    ContactReviewCreation(isEdit: false) {}
         .environment(
             Item(
                 timestamp: .now,

@@ -16,28 +16,29 @@ struct ContactReviewCreation: View {
 
     @Environment(Item.self) private var item
 
-    let isEdit: Bool = false
+    let isEdit: Bool
 
     let action: () -> Void
 
     var body: some View {
         VStack(spacing: 16) {
-            Text("You can tap the tile to edit the details.")
+            Text(headline)
                 .font(.headline.weight(.regular))
                 .listStyle(.plain)
                 .padding(.vertical, 20)
 
             ReviewItemRow(
                 navigationValue: ContactCreationView.PushedView.username(isPop: true),
-                title: "User Name",
+                title: usernameLabel,
                 icon: .personTextRectangle
             ) {
                 Text(item.username)
                     .padding(.vertical, 8)
             }
+
             ReviewItemRow(
                 navigationValue: ContactCreationView.PushedView.avatar(isPop: true),
-                title: "Avatar",
+                title: avatarLabel,
                 icon: .personCropCircle
             ) {
                 if let avatar = item.avatar {
@@ -48,15 +49,16 @@ struct ContactReviewCreation: View {
 
             ReviewItemRow(
                 navigationValue: ContactCreationView.PushedView.phoneNumber(isPop: true),
-                title: "Contact",
-                icon: .phone) {
-                    Text(item.phoneNumber)
-                        .padding(.vertical, 8)
-                }
+                title: contactLabel,
+                icon: .phone
+            ) {
+                Text(item.phoneNumber)
+                    .padding(.vertical, 8)
+            }
 
             ReviewItemRow(
                 navigationValue: ContactCreationView.PushedView.email(isPop: true),
-                title: "Email",
+                title: emailLabel,
                 icon: .envelope
             ) {
                 Text(item.email)
@@ -65,7 +67,7 @@ struct ContactReviewCreation: View {
 
             ReviewItemRow(
                 navigationValue: ContactCreationView.PushedView.linkedIn(isPop: true),
-                title: "LinkedIn",
+                title: linkedInLabel,
                 image: .linkedIn
             ) {
                 Text(item.linkedInName)
@@ -86,21 +88,74 @@ struct ContactReviewCreation: View {
                 }
                 action()
             } label: {
-                Text("Create")
+                Text(buttonLabel)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.extraLarge)
             .padding()
         }
-        .navigationTitle("Review")
+        .toolbar {
+            if isEdit == false {
+                ToolbarItem {
+                    Button(role: .cancel) {
+                        dismiss()
+                    } label: {
+                        Text(cancelLabel)
+                    }
+                }
+            }
+        }
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
     }
 
 }
 
+// MARK: - Attributes
+
+private extension ContactReviewCreation {
+
+    var headline: String {
+        "You can tap the tile to edit the details."
+    }
+
+    var usernameLabel: String {
+        "User Name"
+    }
+
+    var avatarLabel: String {
+        "Avatar"
+    }
+
+    var contactLabel: String {
+        "Contact"
+    }
+
+    var emailLabel: String {
+        "Email"
+    }
+
+    var linkedInLabel: String {
+        "LinkedIn"
+    }
+
+    var buttonLabel: String {
+        isEdit ? "Save" : "Create"
+    }
+
+    var cancelLabel: String {
+        "Cancel"
+    }
+
+    var navigationTitle: String {
+        "Review"
+    }
+
+}
+
 #Preview {
-    ContactReviewCreation {}
+    ContactReviewCreation(isEdit: false) {}
         .environment(
             Item(
                 timestamp: .now,

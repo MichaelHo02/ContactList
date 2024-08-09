@@ -20,12 +20,9 @@ struct ScanView: View {
         CodeScannerView(codeTypes: [.qr], showViewfinder: true) { result in
             switch result {
             case .success(let result):
-                print(result.string)
-                name = String(result.string.split(separator: "/").last?.split(separator: "?").first ?? "")
-                dismiss()
+                handleSuccessScan(result)
             case .failure(let error):
-                showErrorView = true
-                print("Scanning failed: \(error.localizedDescription)")
+                handleFailureScan(error)
             }
         }
         .ignoresSafeArea(.all)
@@ -33,7 +30,7 @@ struct ScanView: View {
             Button {
                 dismiss()
             } label: {
-                Text("Cancel")
+                Text(buttonLabel)
                     .frame(maxWidth: .infinity)
             }
             .tint(.primary)
@@ -44,19 +41,55 @@ struct ScanView: View {
         .overlay {
             if showErrorView {
                 ContentUnavailableView(label: {
-                    Label("No Mail", systemImage: "tray.fill")
+                    Label(labelTitle, systemSymbol: .exclamationmarkBubble)
                 }, description: {
-                    Text("New mails you receive will appear here.")
+                    Text(labelDescription)
                 }, actions: {
                     Button {
                         showErrorView = false
                     } label: {
-                        Text("Try again!")
+                        Text(labelAction)
                     }
                 })
             }
         }
     }
+
+    // MARK: - Logics
+
+    private func handleSuccessScan(_ result: ScanResult) {
+        print(result.string)
+        name = String(result.string.split(separator: "/").last?.split(separator: "?").first ?? "")
+        dismiss()
+    }
+
+    private func handleFailureScan(_ error: ScanError) {
+        showErrorView = true
+        print("Scanning failed: \(error.localizedDescription)")
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ScanView {
+
+    var buttonLabel: String {
+        "Cancel"
+    }
+
+    var labelTitle: String {
+        "Something went wrong!"
+    }
+
+    var labelDescription: String {
+        "Cannot regconize QR code."
+    }
+
+    var labelAction: String {
+        "Try again!"
+    }
+
 }
 
 #Preview {

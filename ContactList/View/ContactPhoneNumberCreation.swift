@@ -22,10 +22,10 @@ struct ContactPhoneNumberCreation: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Please provide the contact number.")
+            Text(description)
                 .font(.title3.weight(.light))
 
-            iPhoneNumberField("+84 123 567 890", text: $phoneNumber, formatted: true)
+            iPhoneNumberField(placeholder, text: $phoneNumber, formatted: true)
                 .font(UIFont(size: 30, weight: .regular, design: .default))
                 .flagHidden(false)
                 .flagSelectable(true)
@@ -38,10 +38,9 @@ struct ContactPhoneNumberCreation: View {
         }
         .safeAreaInset(edge: .bottom) {
             Button {
-                item.phoneNumber = phoneNumber
-                action()
+                handleButtonPressed()
             } label: {
-                Text(isEdit ? "Save" : "Continue")
+                Text(buttonLabel)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -49,16 +48,49 @@ struct ContactPhoneNumberCreation: View {
             .disabled(isDisabled)
         }
         .padding()
-        .navigationTitle("Phone Number")
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            phoneNumber = item.phoneNumber
-            focusedField = true
+            handleOnAppear()
         }
     }
 
+    // MARK: - Logic
+
     private var isDisabled: Bool {
         isEdit && phoneNumber == item.phoneNumber || phoneNumber.isEmpty
+    }
+
+    private func handleOnAppear() {
+        phoneNumber = item.phoneNumber
+        focusedField = true
+    }
+
+    private func handleButtonPressed() {
+        item.phoneNumber = phoneNumber
+        action()
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ContactPhoneNumberCreation {
+
+    var description: String {
+        "Please provide the contact number."
+    }
+
+    var placeholder: String {
+        "+84 123 567 890"
+    }
+
+    var buttonLabel: String {
+        isEdit ? "Save" : "Continue"
+    }
+
+    var navigationTitle: String {
+        "Phone Number"
     }
 
 }

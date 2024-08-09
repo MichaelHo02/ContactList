@@ -21,10 +21,10 @@ struct ContactNameCreation: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("You can always change this later.")
+            Text(description)
                 .font(.title3.weight(.light))
 
-            TextField("Type contact name", text: $name)
+            TextField(placeholder, text: $name)
                 .textFieldStyle(.plain)
                 .font(.title)
                 .focused($focusedField)
@@ -33,10 +33,9 @@ struct ContactNameCreation: View {
         }
         .safeAreaInset(edge: .bottom) {
             Button {
-                item.username = name.trimmingCharacters(in: .whitespacesAndNewlines)
-                action()
+                handleButtonPressed()
             } label: {
-                Text(isEdit ? "Save" : "Continue")
+                Text(buttonLabel)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -44,16 +43,50 @@ struct ContactNameCreation: View {
             .disabled(isDisable)
         }
         .padding()
-        .navigationTitle("Contact Name")
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
-            name = item.username
-            focusedField = true
+            handleOnAppear()
         }
     }
 
+    // MARK: - Logic
+
     private var isDisable: Bool {
         isEdit && item.username == name || name.isEmpty
+    }
+
+    private func handleOnAppear() {
+        name = item.username
+        focusedField = true
+    }
+
+    private func handleButtonPressed() {
+        item.username = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        action()
+    }
+
+
+}
+
+// MARK: - Attributes
+
+private extension ContactNameCreation {
+
+    var description: String {
+        "You can always change this later."
+    }
+
+    var placeholder: String {
+        "Type contact name"
+    }
+
+    var buttonLabel: String {
+        isEdit ? "Save" : "Continue"
+    }
+
+    var navigationTitle: String {
+        "Contact Name"
     }
 
 }

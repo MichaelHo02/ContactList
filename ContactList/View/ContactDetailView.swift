@@ -16,6 +16,7 @@ struct ContactDetailView: View {
     let item: Item
 
     @State private var animateGradient = false
+
     @State private var showConfirmationDialog = false
 
     @State private var presentedView: Bool = false
@@ -93,7 +94,7 @@ struct ContactDetailView: View {
                 .detailRowStyle()
                 .contextMenu {
                     Button {
-                        UIPasteboard.general.string = item.username
+                        UIPasteboard.general.string = item.linkedInName
                     } label: {
                         Label("Copy", systemSymbol: .docOnDoc)
                     }
@@ -129,9 +130,19 @@ struct ContactDetailView: View {
         .background(Color(uiColor: .systemGroupedBackground))
         .navigationTitle("Contact Detail")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem {
+                Button(role: .cancel) {
+                    dismiss()
+                } label: {
+                    Text("Cancel")
+                }
+
+            }
+        }
         .sheet(isPresented: $presentedView) {
             NavigationStack(path: $path) {
-                ContactReviewCreation() {
+                ContactReviewCreation(isEdit: true) {
                     dismiss()
                 }
                 .navigationDestination(for: ContactCreationView.PushedView.self) { pushedView in
@@ -177,7 +188,7 @@ struct ContactDetailView: View {
                             }
                         }
                     case .review:
-                        ContactReviewCreation {
+                        ContactReviewCreation(isEdit: false) {
                             dismiss()
                         }
                     }
