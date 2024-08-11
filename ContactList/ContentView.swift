@@ -75,7 +75,7 @@ private extension ContentView {
     }
 
     var labelAddItem: LocalizedStringKey {
-        "Add Item"
+        "Add"
     }
 
 }

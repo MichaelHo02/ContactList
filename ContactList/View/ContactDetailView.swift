@@ -59,6 +59,8 @@ struct ContactDetailView: View {
                 }
                 .accessibilityElement(children: .combine)
                 .accessibilityHint("Triple tap to see the context menu")
+                .accessibilityAddTraits(.allowsDirectInteraction)
+                .accessibilityInputLabels([phoneNumberLabel])
 
                 VStack(spacing: 16) {
                     Label(emailLabel, systemSymbol: .envelope)
@@ -84,6 +86,8 @@ struct ContactDetailView: View {
                 }
                 .accessibilityElement(children: .combine)
                 .accessibilityHint("Triple tap to see the context menu")
+                .accessibilityAddTraits(.allowsDirectInteraction)
+                .accessibilityInputLabels([emailLabel])
 
                 VStack(spacing: 16) {
                     Label {
@@ -118,6 +122,8 @@ struct ContactDetailView: View {
                 }
                 .accessibilityElement(children: .combine)
                 .accessibilityHint("Triple tap to see the context menu")
+                .accessibilityAddTraits(.allowsDirectInteraction)
+                .accessibilityInputLabels([linkedInLabel])
 
                 Button(role: .destructive) {
                     showConfirmationDialog = true

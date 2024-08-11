@@ -11,7 +11,11 @@
         }
       }
     },
+    "Add" : {
+
+    },
     "Add Item" : {
+      "extractionState" : "stale",
       "localizations" : {
         "vi" : {
           "stringUnit" : {
@@ -191,9 +195,6 @@
         }
       }
     },
-    "Double tap to see the context menu" : {
-
-    },
     "Edit" : {
       "localizations" : {
         "vi" : {
@@ -304,6 +305,9 @@
         }
       }
     },
+    "Select %@" : {
+
+    },
     "Send Email" : {
       "localizations" : {
         "vi" : {
@@ -333,6 +337,9 @@
           }
         }
       }
+    },
+    "Triple tap to see the context menu" : {
+
     },
     "Try again!" : {
       "localizations" : {

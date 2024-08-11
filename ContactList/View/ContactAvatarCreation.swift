@@ -60,7 +60,7 @@ struct ContactAvatarCreation: View {
                     }
                     .accessibilityLabel(color.description)
                 }
-                .accessibilityValue(selectedColor.description)
+                .accessibilityValue("Select \(selectedColor.description)")
             }
 
             Spacer()

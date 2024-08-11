@@ -38,6 +38,8 @@ struct ItemRow: View {
                     .font(.subheadline)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityInputLabels([item.username])
     }
 
 }
