@@ -27,14 +27,14 @@ struct ContentView: View {
                 .onDelete(perform: deleteItems)
             }
             .listRowSpacing(8)
-            .navigationTitle("Contact List") 
+            .navigationTitle(navigationTitle) 
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
                     Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        Label(labelAddItem, systemSymbol: .plus)
                     }
                 }
             }
@@ -64,6 +64,20 @@ struct ContentView: View {
             }
         }
     }
+}
+
+// MARK: - Attributes
+
+private extension ContentView {
+
+    var navigationTitle: LocalizedStringKey {
+        "Contact List"
+    }
+
+    var labelAddItem: LocalizedStringKey {
+        "Add Item"
+    }
+
 }
 
 extension ContentView {

@@ -16,70 +16,73 @@ struct ContactReviewCreation: View {
 
     @Environment(Item.self) private var item
 
+    @ScaledMetric var scale = 20
+
     let isEdit: Bool
 
     let action: () -> Void
 
     var body: some View {
-        VStack(spacing: 16) {
-            Text(headline)
-                .font(.headline.weight(.regular))
-                .listStyle(.plain)
-                .padding(.vertical, 20)
+        ScrollView {
+            VStack(spacing: 16) {
+                Text(headline)
+                    .font(.headline.weight(.regular))
+                    .listStyle(.plain)
+                    .padding(.vertical, 20)
 
-            ReviewItemRow(
-                navigationValue: ContactCreationView.PushedView.username(isPop: true),
-                title: usernameLabel,
-                icon: .personTextRectangle
-            ) {
-                Text(item.username)
-                    .padding(.vertical, 8)
-            }
-
-            ReviewItemRow(
-                navigationValue: ContactCreationView.PushedView.avatar(isPop: true),
-                title: avatarLabel,
-                icon: .personCropCircle
-            ) {
-                if let avatar = item.avatar {
-                    Text(avatar.icon)
-                        .avatarStyle(background: avatar.background.color, fontSize: 20, length: 40, cornerRadius: 8)
+                ReviewItemRow(
+                    navigationValue: ContactCreationView.PushedView.username(isPop: true),
+                    title: usernameLabel,
+                    icon: .personTextRectangle
+                ) {
+                    Text(item.username)
+                        .padding(.vertical, 8)
                 }
+
+                ReviewItemRow(
+                    navigationValue: ContactCreationView.PushedView.avatar(isPop: true),
+                    title: avatarLabel,
+                    icon: .personCropCircle
+                ) {
+                    if let avatar = item.avatar {
+                        Text(avatar.icon)
+                            .avatarStyle(background: avatar.background.color, fontSize: scale, length: scale * 2, cornerRadius: 8)
+                    }
+                }
+
+                ReviewItemRow(
+                    navigationValue: ContactCreationView.PushedView.phoneNumber(isPop: true),
+                    title: contactLabel,
+                    icon: .phone
+                ) {
+                    Text(item.phoneNumber)
+                        .padding(.vertical, 8)
+                }
+
+                ReviewItemRow(
+                    navigationValue: ContactCreationView.PushedView.email(isPop: true),
+                    title: emailLabel,
+                    icon: .envelope
+                ) {
+                    Text(item.email)
+                        .padding(.vertical, 8)
+                }
+
+                ReviewItemRow(
+                    navigationValue: ContactCreationView.PushedView.linkedIn(isPop: true),
+                    title: linkedInLabel,
+                    image: .linkedIn
+                ) {
+                    Text(item.linkedInName)
+                        .padding(.vertical, 8)
+                }
+
+                Spacer()
+
             }
-
-            ReviewItemRow(
-                navigationValue: ContactCreationView.PushedView.phoneNumber(isPop: true),
-                title: contactLabel,
-                icon: .phone
-            ) {
-                Text(item.phoneNumber)
-                    .padding(.vertical, 8)
-            }
-
-            ReviewItemRow(
-                navigationValue: ContactCreationView.PushedView.email(isPop: true),
-                title: emailLabel,
-                icon: .envelope
-            ) {
-                Text(item.email)
-                    .padding(.vertical, 8)
-            }
-
-            ReviewItemRow(
-                navigationValue: ContactCreationView.PushedView.linkedIn(isPop: true),
-                title: linkedInLabel,
-                image: .linkedIn
-            ) {
-                Text(item.linkedInName)
-                    .padding(.vertical, 8)
-            }
-
-            Spacer()
-
+            .padding(.horizontal)
+            .buttonStyle(.plain)
         }
-        .padding(.horizontal)
-        .buttonStyle(.plain)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Color(uiColor: .systemGroupedBackground), ignoresSafeAreaEdges: .all)
         .safeAreaInset(edge: .bottom) {
             Button {
@@ -96,7 +99,7 @@ struct ContactReviewCreation: View {
             .padding()
         }
         .toolbar {
-            if isEdit == false {
+            if isEdit {
                 ToolbarItem {
                     Button(role: .cancel) {
                         dismiss()
@@ -116,39 +119,39 @@ struct ContactReviewCreation: View {
 
 private extension ContactReviewCreation {
 
-    var headline: String {
+    var headline: LocalizedStringKey {
         "You can tap the tile to edit the details."
     }
 
-    var usernameLabel: String {
+    var usernameLabel: LocalizedStringKey {
         "User Name"
     }
 
-    var avatarLabel: String {
+    var avatarLabel: LocalizedStringKey {
         "Avatar"
     }
 
-    var contactLabel: String {
+    var contactLabel: LocalizedStringKey {
         "Contact"
     }
 
-    var emailLabel: String {
+    var emailLabel: LocalizedStringKey {
         "Email"
     }
 
-    var linkedInLabel: String {
+    var linkedInLabel: LocalizedStringKey {
         "LinkedIn"
     }
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         isEdit ? "Save" : "Create"
     }
 
-    var cancelLabel: String {
+    var cancelLabel: LocalizedStringKey {
         "Cancel"
     }
 
-    var navigationTitle: String {
+    var navigationTitle: LocalizedStringKey {
         "Review"
     }
 

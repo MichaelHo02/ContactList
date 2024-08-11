@@ -73,19 +73,19 @@ struct ContactNameCreation: View {
 
 private extension ContactNameCreation {
 
-    var description: String {
+    var description: LocalizedStringKey {
         "You can always change this later."
     }
 
-    var placeholder: String {
+    var placeholder: LocalizedStringKey {
         "Type contact name"
     }
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         isEdit ? "Save" : "Continue"
     }
 
-    var navigationTitle: String {
+    var navigationTitle: LocalizedStringKey {
         "Contact Name"
     }
 

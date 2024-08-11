@@ -74,19 +74,19 @@ struct ScanView: View {
 
 private extension ScanView {
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         "Cancel"
     }
 
-    var labelTitle: String {
+    var labelTitle: LocalizedStringKey {
         "Something went wrong!"
     }
 
-    var labelDescription: String {
-        "Cannot regconize QR code."
+    var labelDescription: LocalizedStringKey {
+        "Cannot recognize QR code."
     }
 
-    var labelAction: String {
+    var labelAction: LocalizedStringKey {
         "Try again!"
     }
 

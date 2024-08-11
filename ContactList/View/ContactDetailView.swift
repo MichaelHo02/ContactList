@@ -13,6 +13,8 @@ struct ContactDetailView: View {
 
     @Environment(\.dismiss) private var dismiss
 
+    @ScaledMetric(wrappedValue: 20, relativeTo: .body) var scale
+
     let item: Item
 
     @State private var animateGradient = false
@@ -24,10 +26,11 @@ struct ContactDetailView: View {
     @State private var path = NavigationPath()
 
     var body: some View {
-        VStack {
+        ScrollView {
             if let avatar = item.avatar {
                 Text(avatar.icon)
                     .avatarStyle(background: avatar.background.color)
+                    .accessibilityLabel("Avatar")
             }
 
             Text(item.username)
@@ -35,8 +38,7 @@ struct ContactDetailView: View {
 
             VStack(spacing: 24) {
                 VStack(spacing: 16) {
-                    Label("Phone Number", systemSymbol: .phoneFill)
-
+                    Label(phoneNumberLabel, systemSymbol: .phoneFill)
                     Text(item.phoneNumber)
                         .font(.headline)
                 }
@@ -45,49 +47,53 @@ struct ContactDetailView: View {
                     Button {
                         UIPasteboard.general.string = item.phoneNumber
                     } label: {
-                        Label("Copy", systemSymbol: .docOnDoc)
+                        Label(copyLabel, systemSymbol: .docOnDoc)
                     }
 
                     Button {
                         guard let url = URL(string: "tel://\(item.phoneNumber)") else { return }
                         UIApplication.shared.open(url)
                     } label: {
-                        Label("Call", systemSymbol: .phoneFill)
+                        Label(callLabel, systemSymbol: .phoneFill)
                     }
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityHint("Triple tap to see the context menu")
 
                 VStack(spacing: 16) {
-                    Label("Email", systemSymbol: .envelope)
-
+                    Label(emailLabel, systemSymbol: .envelope)
                     Text(item.email)
                         .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
                 }
                 .detailRowStyle()
                 .contextMenu {
                     Button {
                         UIPasteboard.general.string = item.email
                     } label: {
-                        Label("Copy", systemSymbol: .docOnDoc)
+                        Label(copyLabel, systemSymbol: .docOnDoc)
                     }
 
                     Button {
                         guard let url = URL(string: "mailto:\(item.email)") else { return }
                         UIApplication.shared.open(url)
                     } label: {
-                        Label("Send Email", systemSymbol: .envelope)
+                        Label(sendEmailLabel, systemSymbol: .envelope)
                     }
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityHint("Triple tap to see the context menu")
 
                 VStack(spacing: 16) {
                     Label {
-                        Text("LinkedIn")
+                        Text(linkedInLabel)
                     } icon: {
                         Image(.linkedIn)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 20)
+                            .frame(width: scale)
                     }
-
                     Text(item.linkedInName)
                         .font(.headline)
                 }
@@ -96,7 +102,7 @@ struct ContactDetailView: View {
                     Button {
                         UIPasteboard.general.string = item.linkedInName
                     } label: {
-                        Label("Copy", systemSymbol: .docOnDoc)
+                        Label(copyLabel, systemSymbol: .docOnDoc)
                     }
 
                     Button {
@@ -107,115 +113,171 @@ struct ContactDetailView: View {
                         }
                         UIApplication.shared.open(url)
                     } label: {
-                        Label("Open", image: .linkedIn)
+                        Label(openLabel, image: .linkedIn)
                     }
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityHint("Triple tap to see the context menu")
 
-                Button {
-                    presentedView = true
+                Button(role: .destructive) {
+                    showConfirmationDialog = true
                 } label: {
-                    Text("Edit")
-                        .padding(.horizontal, 4)
+                    Text(deleteButtonLabel)
+                        .fontWeight(.medium)
                 }
-                .buttonStyle(.bordered)
-                .controlSize(.mini)
-                .tint(.accentColor)
+                .padding()
             }
             .padding(.horizontal)
-
-            Spacer()
-
         }
-        .frame(maxHeight: .infinity)
+        .scrollBounceBehavior(.basedOnSize)
         .background(Color(uiColor: .systemGroupedBackground))
-        .navigationTitle("Contact Detail")
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem {
-                Button(role: .cancel) {
-                    dismiss()
-                } label: {
-                    Text("Cancel")
-                }
-
+            Button {
+                presentedView = true
+            } label: {
+                Text(editButtonLabel)
+                    .padding(.horizontal, 4)
             }
+            .buttonStyle(.bordered)
+            .controlSize(.mini)
+            .tint(.accentColor)
         }
         .sheet(isPresented: $presentedView) {
             NavigationStack(path: $path) {
                 ContactReviewCreation(isEdit: true) {
                     dismiss()
                 }
-                .navigationDestination(for: ContactCreationView.PushedView.self) { pushedView in
-                    switch pushedView {
-                    case .username(let isPop):
-                        ContactNameCreation(isEdit: isPop) {
-                            if isPop {
-                                path.removeLast()
-                            } else {
-                                path.append(ContactCreationView.PushedView.avatar(isPop: false))
-                            }
-                        }
-                    case .avatar(let isPop):
-                        ContactAvatarCreation(isEdit: isPop) {
-                            if isPop {
-                                path.removeLast()
-                            } else {
-                                path.append(ContactCreationView.PushedView.phoneNumber(isPop: false))
-                            }
-                        }
-                    case .phoneNumber(let isPop):
-                        ContactPhoneNumberCreation(isEdit: isPop) {
-                            if isPop {
-                                path.removeLast()
-                            } else {
-                                path.append(ContactCreationView.PushedView.email(isPop: false))
-                            }
-                        }
-                    case .email(let isPop):
-                        ContactEmailCreationView(isEdit: isPop) {
-                            if isPop {
-                                path.removeLast()
-                            } else {
-                                path.append(ContactCreationView.PushedView.email(isPop: false))
-                            }
-                        }
-                    case .linkedIn(isPop: let isPop):
-                        ContactLinkedInCreation(isEdit: isPop) {
-                            if isPop {
-                                path.removeLast()
-                            } else {
-                                path.append(ContactCreationView.PushedView.linkedIn(isPop: false))
-                            }
-                        }
-                    case .review:
-                        ContactReviewCreation(isEdit: false) {
-                            dismiss()
-                        }
-                    }
-                }
+                .navigationDestination(for: ContactCreationView.PushedView.self, destination: navigateDestination)
             }
             .environment(item)
         }
-        .safeAreaInset(edge: .bottom) {
-            Button(role: .destructive) {
-                showConfirmationDialog = true
-            } label: {
-                Text("Delete Contact")
-                    .fontWeight(.medium)
-            }
-            .padding()
-        }
-        .confirmationDialog(
-            "Are you sure you want to delete this contact?",
-            isPresented: $showConfirmationDialog,
-            titleVisibility: .visible
-        ) {
-            Button("Delete", role: .destructive) {
+        .confirmationDialog(confirmationTitle, isPresented: $showConfirmationDialog, titleVisibility: .visible) {
+            Button(confirmationButtonLabel, role: .destructive) {
                 modelContext.delete(item)
                 dismiss()
             }
-            Button("Cancel", role: .cancel) { }
+            Button(confirmationButtonCancelLabel, role: .cancel) { }
         }
+    }
+
+    // MARK: - Logic
+
+    @ViewBuilder
+    private func navigateDestination(pushedView: ContactCreationView.PushedView) -> some View {
+        switch pushedView {
+        case .username(let isPop):
+            ContactNameCreation(isEdit: isPop) {
+                if isPop {
+                    path.removeLast()
+                } else {
+                    path.append(ContactCreationView.PushedView.avatar(isPop: false))
+                }
+            }
+        case .avatar(let isPop):
+            ContactAvatarCreation(isEdit: isPop) {
+                if isPop {
+                    path.removeLast()
+                } else {
+                    path.append(ContactCreationView.PushedView.phoneNumber(isPop: false))
+                }
+            }
+        case .phoneNumber(let isPop):
+            ContactPhoneNumberCreation(isEdit: isPop) {
+                if isPop {
+                    path.removeLast()
+                } else {
+                    path.append(ContactCreationView.PushedView.email(isPop: false))
+                }
+            }
+        case .email(let isPop):
+            ContactEmailCreationView(isEdit: isPop) {
+                if isPop {
+                    path.removeLast()
+                } else {
+                    path.append(ContactCreationView.PushedView.email(isPop: false))
+                }
+            }
+        case .linkedIn(isPop: let isPop):
+            ContactLinkedInCreation(isEdit: isPop) {
+                if isPop {
+                    path.removeLast()
+                } else {
+                    path.append(ContactCreationView.PushedView.linkedIn(isPop: false))
+                }
+            }
+        case .review:
+            ContactReviewCreation(isEdit: false) {
+                dismiss()
+            }
+        }
+    }
+
+}
+
+// MARK: - Attributes
+
+private extension ContactDetailView {
+
+    var description: LocalizedStringKey {
+        "Please provide the contact number."
+    }
+
+    var placeholder: LocalizedStringKey {
+        "+61 123 567 890"
+    }
+
+    var editButtonLabel: LocalizedStringKey {
+        "Edit"
+    }
+
+    var navigationTitle: LocalizedStringKey {
+        "Contact Detail"
+    }
+
+    var deleteButtonLabel: LocalizedStringKey {
+        "Delete Contact"
+    }
+
+    var confirmationTitle: LocalizedStringKey {
+        "Are you sure you want to delete this contact?"
+    }
+
+    var confirmationButtonLabel: LocalizedStringKey {
+        "Delete"
+    }
+
+    var confirmationButtonCancelLabel: LocalizedStringKey {
+        "Cancel"
+    }
+
+    var phoneNumberLabel: LocalizedStringKey {
+        "Phone Number"
+    }
+
+    var copyLabel: LocalizedStringKey {
+        "Copy"
+    }
+
+    var callLabel: LocalizedStringKey {
+        "Call"
+    }
+
+    var emailLabel: LocalizedStringKey {
+        "Email"
+    }
+
+    var sendEmailLabel: LocalizedStringKey {
+        "Send Email"
+    }
+
+    var linkedInLabel: LocalizedStringKey {
+        "LinkedIn"
+    }
+
+    var openLabel: LocalizedStringKey {
+        "Open"
     }
 
 }

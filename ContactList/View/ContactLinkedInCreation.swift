@@ -38,6 +38,8 @@ struct ContactLinkedInCreation: View {
                     handleButtonPressed()
                 } label: {
                     Text(buttonLabel)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
@@ -88,19 +90,19 @@ struct ContactLinkedInCreation: View {
 
 private extension ContactLinkedInCreation {
 
-    var description: String {
+    var description: LocalizedStringKey {
         "You can always change this later."
     }
 
-    var placeholder: String {
+    var placeholder: LocalizedStringKey {
         "LinkededIn username"
     }
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         isEdit ? "Save" : "Continue"
     }
 
-    var navigationTitle: String {
+    var navigationTitle: LocalizedStringKey {
         "LinkedIn"
     }
 

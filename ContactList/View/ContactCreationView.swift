@@ -83,7 +83,7 @@ struct ContactCreationView: View {
 
 private extension ContactCreationView {
 
-    var cancelLabel: String {
+    var cancelLabel: LocalizedStringKey {
         "Cancel"
     }
 

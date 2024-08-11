@@ -13,6 +13,8 @@ struct ContactAvatarCreation: View {
 
     @Environment(Item.self) private var item
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     @FocusState private var focusedField: Bool
 
     @State private var selectedEmoji: Emoji?
@@ -36,9 +38,10 @@ struct ContactAvatarCreation: View {
                 Text(avatarLabel)
                     .avatarStyle(background: selectedColor)
             }
+            .accessibilityLabel("Avatar")
             .sensoryFeedback(.impact(flexibility: .soft), trigger: selectedEmoji)
 
-            HStack {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columnsCount)) {
                 ForEach(colors, id: \.hashValue) { color in
                     Button {
                         withAnimation(.bouncy) {
@@ -55,7 +58,9 @@ struct ContactAvatarCreation: View {
                                 }
                             }
                     }
+                    .accessibilityLabel(color.description)
                 }
+                .accessibilityValue(selectedColor.description)
             }
 
             Spacer()
@@ -89,6 +94,10 @@ struct ContactAvatarCreation: View {
 
     // MARK: - Logic
 
+    private var columnsCount: Int {
+        dynamicTypeSize.isAccessibilitySize ? 4 : 7
+    }
+
     private var isDisable: Bool {
         guard let avatar = item.avatar else { return false }
         return isEdit && selectedEmoji?.value ?? "" == avatar.icon && selectedColor == avatar.background.color || selectedEmoji == nil
@@ -115,7 +124,7 @@ struct ContactAvatarCreation: View {
 
 private extension ContactAvatarCreation {
 
-    var description: String {
+    var description: LocalizedStringKey {
         "Choose an Emoji"
     }
 
@@ -123,15 +132,15 @@ private extension ContactAvatarCreation {
         selectedEmoji?.value ?? "?"
     }
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         isEdit ? "Save" : "Continue"
     }
 
-    var navigationTitleParent: String {
+    var navigationTitleParent: LocalizedStringKey {
         "Avatar"
     }
 
-    var navigationTitleChild: String {
+    var navigationTitleChild: LocalizedStringKey {
         "Emojis"
     }
 

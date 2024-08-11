@@ -31,6 +31,7 @@
 		C1D111D82C66326200C5E066 /* ContactLinkedInCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111D72C66326200C5E066 /* ContactLinkedInCreation.swift */; };
 		C1D111DB2C66394D00C5E066 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = C1D111DA2C66394D00C5E066 /* CodeScanner */; };
 		C1D111DD2C663C3F00C5E066 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D111DC2C663C3F00C5E066 /* ScannerView.swift */; };
+		C1D111DF2C672CD100C5E066 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C1D111DE2C672CD100C5E066 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		C1D111D52C66064F00C5E066 /* ContactEmailCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEmailCreationView.swift; sourceTree = "<group>"; };
 		C1D111D72C66326200C5E066 /* ContactLinkedInCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLinkedInCreation.swift; sourceTree = "<group>"; };
 		C1D111DC2C663C3F00C5E066 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		C1D111DE2C672CD100C5E066 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				C17DFEFD2C5DF576005A711E /* ContactListApp.swift */,
 				C17DFEFF2C5DF576005A711E /* ContentView.swift */,
 				C17DFF032C5DF578005A711E /* Assets.xcassets */,
+				C1D111DE2C672CD100C5E066 /* Localizable.xcstrings */,
 				C17DFF052C5DF578005A711E /* Preview Content */,
 			);
 			path = ContactList;
@@ -290,6 +293,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = C17DFEF12C5DF576005A711E;
 			packageReferences = (
@@ -316,6 +320,7 @@
 			files = (
 				C17DFF072C5DF578005A711E /* Preview Assets.xcassets in Resources */,
 				C17DFF042C5DF578005A711E /* Assets.xcassets in Resources */,
+				C1D111DF2C672CD100C5E066 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

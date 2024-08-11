@@ -9,11 +9,13 @@ import SwiftUI
 
 struct ItemRow: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let item: Item
 
     var body: some View {
         HStack {
-            if let avatar = item.avatar {
+            if let avatar = item.avatar, dynamicTypeSize.isAccessibilitySize == false {
                 Text(avatar.icon)
                     .font(.title)
                     .scaledToFit()
@@ -24,6 +26,8 @@ struct ItemRow: View {
                         RoundedRectangle(cornerRadius: 8)
                             .foregroundStyle(avatar.background.color.secondary)
                     )
+                    .accessibilityLabel("Avatar")
+                    .accessibilityValue(item.username)
             }
 
             VStack(alignment: .leading) {

@@ -10,6 +10,8 @@ import iPhoneNumberField
 
 struct ContactPhoneNumberCreation: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     @Environment(Item.self) private var item
 
     @FocusState private var focusedField: Bool
@@ -21,17 +23,17 @@ struct ContactPhoneNumberCreation: View {
     let action: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: alignment) {
             Text(description)
                 .font(.title3.weight(.light))
 
             iPhoneNumberField(placeholder, text: $phoneNumber, formatted: true)
-                .font(UIFont(size: 30, weight: .regular, design: .default))
+                .font(UIFont.preferredFont(forTextStyle: .largeTitle))
                 .flagHidden(false)
                 .flagSelectable(true)
                 .prefixHidden(false)
                 .autofillPrefix(true)
-                .maximumDigits(10)
+                .maximumDigits(9)
                 .focused($focusedField)
 
             Spacer()
@@ -57,6 +59,10 @@ struct ContactPhoneNumberCreation: View {
 
     // MARK: - Logic
 
+    private var alignment: HorizontalAlignment {
+        dynamicTypeSize.isAccessibilitySize ? .center : .leading
+    }
+
     private var isDisabled: Bool {
         isEdit && phoneNumber == item.phoneNumber || phoneNumber.isEmpty
     }
@@ -77,19 +83,19 @@ struct ContactPhoneNumberCreation: View {
 
 private extension ContactPhoneNumberCreation {
 
-    var description: String {
+    var description: LocalizedStringKey {
         "Please provide the contact number."
     }
 
     var placeholder: String {
-        "+84 123 567 890"
+        String(localized: "+61 123 567 890")
     }
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         isEdit ? "Save" : "Continue"
     }
 
-    var navigationTitle: String {
+    var navigationTitle: LocalizedStringKey {
         "Phone Number"
     }
 

@@ -76,19 +76,19 @@ struct ContactEmailCreationView: View {
 
 private extension ContactEmailCreationView {
 
-    var description: String {
-        "Pleaes provide the contact email."
+    var description: LocalizedStringKey {
+        "Please provide the contact email."
     }
 
-    var placeholder: String {
+    var placeholder: LocalizedStringKey {
         "Type contact email"
     }
 
-    var buttonLabel: String {
+    var buttonLabel: LocalizedStringKey {
         isEdit ? "Save" : "Continue"
     }
 
-    var navigationTitle: String {
+    var navigationTitle: LocalizedStringKey {
         "Contact Email"
     }
 
