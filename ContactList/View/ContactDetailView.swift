@@ -152,9 +152,7 @@ struct ContactDetailView: View {
         }
         .sheet(isPresented: $presentedView) {
             NavigationStack(path: $path) {
-                ContactReviewCreation(isEdit: true) {
-                    dismiss()
-                }
+                ContactReviewCreation(isEdit: true) {}
                 .navigationDestination(for: ContactCreationView.PushedView.self, destination: navigateDestination)
             }
             .environment(item)

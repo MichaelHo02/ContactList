@@ -89,6 +89,9 @@ struct ContactReviewCreation: View {
                 withAnimation {
                     modelContext.insert(item)
                 }
+                if isEdit {
+                    dismiss()
+                }
                 action()
             } label: {
                 Text(buttonLabel)
