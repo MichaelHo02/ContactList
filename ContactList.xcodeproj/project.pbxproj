@@ -288,12 +288,13 @@
 			};
 			buildConfigurationList = C17DFEF52C5DF576005A711E /* Build configuration list for PBXProject "ContactList" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ar;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ar,
 				vi,
+				Base,
 			);
 			mainGroup = C17DFEF12C5DF576005A711E;
 			packageReferences = (

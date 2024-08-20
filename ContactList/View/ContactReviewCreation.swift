@@ -62,7 +62,7 @@ struct ContactReviewCreation: View {
                 ReviewItemRow(
                     navigationValue: ContactCreationView.PushedView.email(isPop: true),
                     title: emailLabel,
-                    icon: .envelope
+                    icon: .squareAndArrowUpFill
                 ) {
                     Text(item.email)
                         .padding(.vertical, 8)

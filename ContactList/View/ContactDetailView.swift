@@ -121,7 +121,7 @@ struct ContactDetailView: View {
                     }
                 }
                 .accessibilityElement(children: .combine)
-                .accessibilityHint("Triple tap to see the context menu")
+                .accessibilityHint("Performing long press to see the context menu")
                 .accessibilityAddTraits(.allowsDirectInteraction)
                 .accessibilityInputLabels([linkedInLabel])
 
